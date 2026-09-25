@@ -54,76 +54,80 @@ export default function ProgramList() {
   };
 
   return (
-    <div className="programs-wrapper">
+    <div className="programs-split">
 
-      {/* Create Program */}
-      <div className="programs-section">
-        <h2 className="section-heading">Create Program</h2>
-        <div className="inline-input-row">
-          <input
-            placeholder="Program name, e.g. Maternal Health"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && addProgram()}
-          />
-          <button className="btn-primary" onClick={addProgram} disabled={!name.trim()}>
-            Add Program
-          </button>
-        </div>
-      </div>
-
-      {/* Enroll Client */}
-      <div className="programs-section">
-        <h2 className="section-heading">Enroll Client to Program</h2>
-        <div className="enroll-selects">
-          <select
-            value={selectedClient}
-            onChange={e => setSelectedClient(e.target.value)}
-          >
-            <option value="">Select Client</option>
-            {clients.map(c => (
-              <option key={c._id} value={c._id}>
-                {c.name} — Age {c.age}
-              </option>
-            ))}
-          </select>
-
-          <select
-            value={selectedProgram}
-            onChange={e => setSelectedProgram(e.target.value)}
-          >
-            <option value="">Select Program</option>
-            {programs.map(p => (
-              <option key={p._id} value={p._id}>
-                {p.name}
-              </option>
-            ))}
-          </select>
-
-          <button
-            className="btn-success"
-            onClick={enrollClient}
-            disabled={!selectedClient || !selectedProgram}
-          >
-            Enroll Client
-          </button>
-        </div>
-
-        {error && <p className="error-msg">{error}</p>}
-      </div>
-
-      {/* Existing Programs */}
-      <div className="programs-section">
-        <h2 className="section-heading">Existing Programs</h2>
-        {programs.length === 0 ? (
-          <p className="programs-empty">No programs created yet.</p>
-        ) : (
-          <div className="program-tags">
-            {programs.map(p => (
-              <span key={p._id} className="program-tag">{p.name}</span>
-            ))}
+      <div className="programs-split-left">
+        {/* Create Program */}
+        <div className="programs-section">
+          <h2 className="section-heading">Create Program</h2>
+          <div className="inline-input-row">
+            <input
+              placeholder="Program name, e.g. Maternal Health"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && addProgram()}
+            />
+            <button className="btn-primary" onClick={addProgram} disabled={!name.trim()}>
+              Add Program
+            </button>
           </div>
-        )}
+        </div>
+
+        {/* Enroll Client */}
+        <div className="programs-section">
+          <h2 className="section-heading">Enroll Client to Program</h2>
+          <div className="enroll-selects">
+            <select
+              value={selectedClient}
+              onChange={e => setSelectedClient(e.target.value)}
+            >
+              <option value="">Select Client</option>
+              {clients.map(c => (
+                <option key={c._id} value={c._id}>
+                  {c.name} — Age {c.age}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={selectedProgram}
+              onChange={e => setSelectedProgram(e.target.value)}
+            >
+              <option value="">Select Program</option>
+              {programs.map(p => (
+                <option key={p._id} value={p._id}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
+
+            <button
+              className="btn-success"
+              onClick={enrollClient}
+              disabled={!selectedClient || !selectedProgram}
+            >
+              Enroll Client
+            </button>
+          </div>
+
+          {error && <p className="error-msg">{error}</p>}
+        </div>
+      </div>
+
+      <div className="programs-split-right">
+        {/* Existing Programs */}
+        <div className="programs-section">
+          <h2 className="section-heading">Existing Programs</h2>
+          {programs.length === 0 ? (
+            <p className="programs-empty">No programs created yet.</p>
+          ) : (
+            <div className="program-tags">
+              {programs.map(p => (
+                <span key={p._id} className="program-tag">{p.name}</span>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
     </div>

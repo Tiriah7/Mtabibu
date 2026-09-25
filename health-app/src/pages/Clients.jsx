@@ -6,11 +6,16 @@ export default function Clients() {
   const [trigger, setTrigger] = useState(false);
 
   return (
-    <div className="p-4">
-      <h1 className="text-xl font-bold mb-4">Clients</h1>
-      <ClientForm onAdd={() => setTrigger(!trigger)} />
-      <hr className="my-4" />
-      <ClientList key={trigger} />
+    <div className="clients-page">
+      <h1 className="page-heading">Clients</h1>
+      <div className="clients-split">
+        <div className="clients-split-left">
+          <ClientForm onAdd={() => setTrigger(!trigger)} />
+        </div>
+        <div className="clients-split-right">
+          <ClientList key={trigger} />
+        </div>
+      </div>
     </div>
   );
 }
